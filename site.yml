@@ -1,0 +1,51 @@
+---
+################################################################################
+# Setup
+################################################################################
+- hosts: all
+  become: true
+  become_method: sudo
+  tasks:
+
+  - name: apt-get update && install deps
+    apt:
+      update_cache: yes
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vim
+      - wget
+      - rsync
+    tags:
+      - setup
+      - deps
+
+  - name: Generate /etc/hosts
+    template:
+      src: hosts.j2
+      dest: /etc/hosts
+      owner: root
+      group: root
+      mode: 0644
+    tags:
+      - setup
+      - hosts
+
+  - name: Ignore lid close
+    lineinfile:
+      path: /etc/systemd/logind.conf
+      line: HandleLidSwitch=ignore
+    notify:
+      - restart systemd-logind service
+    tags:
+      - setup
+      - lid
+
+  handlers:
+    - name: restart systemd-logind service
+      service:
+        name: systemd-logind
+        state: restarted
+      tags:
+        - setup
+        - lid
