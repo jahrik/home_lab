@@ -7,29 +7,41 @@
   become_method: sudo
   tasks:
 
-  - name: apt-get update && install deps
-    apt:
-      update_cache: yes
-      name: "{{ item }}"
-      state: present
-    with_items:
-      - vim
-      - wget
-      - rsync
-    tags:
-      - setup
-      - deps
+ #  - name: apt-get update && install deps
+ #    apt:
+ #      update_cache: yes
+ #      name: "{{ item }}"
+ #      state: present
+ #    with_items:
+ #      - vim
+ #      - wget
+ #      - rsync
+ #      - make
+ #    tags:
+ #      - setup
+ #      - deps
 
-  - name: Generate /etc/hosts
-    template:
-      src: hosts.j2
-      dest: /etc/hosts
-      owner: root
-      group: root
-      mode: 0644
-    tags:
-      - setup
-      - hosts
+  - name: Ensure local certs directory exists
+    file:
+      state: directory
+      path: /usr/local/share/ca-certificates
+
+  - name: Install squid_https cert
+    copy:
+      src: ./squid_https.crt
+      dest: /usr/local/share/ca-certificates/squid_https.crt
+    notify: update-ca-certificates
+
+#   - name: Generate /etc/hosts
+#     template:
+#       src: hosts.j2
+#       dest: /etc/hosts
+#       owner: root
+#       group: root
+#       mode: 0644
+#     tags:
+#       - setup
+#       - hosts
 
   - name: Ignore lid close
     lineinfile:
@@ -42,6 +54,7 @@
       - lid
 
   handlers:
+
     - name: restart systemd-logind service
       service:
         name: systemd-logind
@@ -49,3 +62,7 @@
       tags:
         - setup
         - lid
+
+    - name: update-ca-certificates
+      command: /usr/sbin/update-ca-certificates
+
