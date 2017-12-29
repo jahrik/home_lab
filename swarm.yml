@@ -1,28 +1,61 @@
 ---
-# install docker-engine on all machines
+# install docker ce on all machines
 # this particular setup is for ubuntu 16.04
-- hosts: all:!local
+- hosts: all:!raspberrypi.dojo.io
   become: true
   tasks:
 
-    - name: add docker engine repo key
+    - name: install dependencies
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+
+    - name: add docker ce repo key
       apt_key:
-        keyserver: p80.pool.sks-keyservers.net
-        id: 58118E89F3A912897C070ADBF76221572C52609D
+        url: https://download.docker.com/linux/ubuntu/gpg
         state: present
 
     - name: add docker engine repo
       apt_repository:
-        repo: deb https://apt.dockerproject.org/repo ubuntu-xenial main
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
         state: present
         filename: docker
         update_cache: yes
 
+#     - name: clean slate
+#       apt:
+#         name: "{{ item }}"
+#           state: absent
+#       with_items:
+#         - docker
+#         - docker-engine
+#         - docker.io
+
     - name: install docker-engine
       apt:
-        name: docker-engine
+        name: docker-ce
         state: present
         update_cache: yes
+
+    # Disable IPV6
+    - name: Add configs to /etc/sysctl.conf
+      lineinfile:
+        path: /etc/sysctl.conf
+        line: "{{ item }}"
+      with_items:
+        - net.ipv6.conf.all.disable_ipv6 = 1
+        - net.ipv6.conf.default.disable_ipv6 = 1
+        - net.ipv6.conf.lo.disable_ipv6 = 1
+
+    - name: Update kernel perams
+      command: sudo sysctl -p
+
 
 #     - name: install other docker tools
 #       apt:
