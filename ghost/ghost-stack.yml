@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+
+  blog:
+    image: ghost:1-alpine
+    volumes:
+      - /data/ghost/content:/var/lib/ghost/content
+    ports:
+        - '2368:2368'
+    deploy:
+      replicas: 1
