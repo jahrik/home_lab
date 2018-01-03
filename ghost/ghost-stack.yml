@@ -4,6 +4,8 @@ services:
 
   blog:
     image: ghost:1-alpine
+    environment:
+      url: "http://homelab.business/"
     volumes:
       - /data/ghost/content:/var/lib/ghost/content
     ports:
