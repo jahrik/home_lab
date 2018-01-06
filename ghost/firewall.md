@@ -1,11 +1,11 @@
 # Firewall
 
-## How I made sense of pfSense
 When I first signed up with my current ISP a few years back, I started with a student plan that was around $35 a month for basic speeds.  More than enough for me to attend online classes and play the occasional MMO.  Fast-forward a few years and they were charging me about $180 a month because of our family's usage of video streaming services and massive game downloads for the PS4.  Me working from home more often and constantly downloading vagrant boxes and docker images all day didn't help either.  I called up my local ISP and asked about a business account.  I had to sign a 3 year contract, but they gave me the same speeds I had without the data caps, plus a public IP to use.  So I thought to myself, "Neat!, what can I do with that?  Maybe I could tinker around with hosting something?"
 
-It took me about a week to get the IP somewhat working.  I'm still not happy with it and it still needs more work.  I'll try and explain it all here in hopes that I can save someone else out there some pain.
+It took me about a week to get the public IP somewhat working.  I'm still not happy with it and it still needs more work.  I'll try and explain it all here in hopes that I can save someone else out there some of the pain I went through figuring it all out.
 
-### Installation
+## Installing pfSense
+
 [Download pfSense](https://www.pfsense.org/download/)
 I normally burn it to a usb, but you can also use a cd.  The dd command is my go to for this one.
 
@@ -30,7 +30,25 @@ of = output file
 bs = bit size (size of chunks that are written at a time.)
 
 #### Testing on the netbook
-I was able to install and run pfSense on an old netbook with very little power.  The system requirements are [ridiculously low!](https://www.pfsense.org/products/#requirements) I used a [usb to ethernet converter](https://www.amazon.com/AmazonBasics-1000-Gigabit-Ethernet-Adapter/dp/B00M77HMU0/ref=sr_1_5_sspa?s=electronics&ie=UTF8&qid=1514528693&sr=1-5-spons&keywords=ethernet+addapter&psc=1) to get a second NIC.
+I was able to install and run pfSense on an old netbook with very little power.  The system requirements are [ridiculously low!](https://www.pfsense.org/products/#requirements).  I used a [usb to ethernet converter](https://www.amazon.com/AmazonBasics-1000-Gigabit-Ethernet-Adapter/dp/B00M77HMU0/ref=sr_1_5_sspa?s=electronics&ie=UTF8&qid=1514528693&sr=1-5-spons&keywords=ethernet+addapter&psc=1) to get a second NIC.
+
+#### Upgrade to the 1u
+The netbook actually handled pfSense well enough, but being one of the mail fail points of my home lab network, I wanted something a little more reliable.  With a few months worth of [bonus.ly](https://bonus.ly/) dollars from work and saved funds I didn't spend on coffee and beer, I was able to put together a 1u server for use as my firewall.  I put more than enough power in it to handle everything I want to test out in the lab.
+* [1u server chassis](https://www.amazon.com/gp/product/B0053YKPCG/ref=oh_aui_detailpage_o07_s00?ie=UTF8&psc=1)
+* [cutest little motherboard cpu combo I could find](https://www.newegg.com/Product/Product.aspx?Item=N82E16813119016)
+  * Added bonus being it's fanless and super quiet to run.
+* [quiet fans](https://www.amazon.com/gp/product/B009NQLT0M/ref=oh_aui_detailpage_o09_s01?ie=UTF8&psc=1)
+  * Currently unplugged right now because it stays cool enough without it so far.
+* [200W PSU](https://www.amazon.com/gp/product/B004VP6YGY/ref=oh_aui_detailpage_o07_s00?ie=UTF8&psc=1)
+  * Should be enough
+* I already had a few other things lying around that I didn't have to buy for this setup
+  * 60G ssd
+  * 2x4G RAM
+* Plans to find a 2 to 4 port ethernet card and flexible riser card, but have not yet.
+  * I'm still using the usb to ethernet adapter I was using in tests on the netbook.
+  * I'll get around to it eventually.
+
+## WAN
 
 #### Public IP
 When I switched to the business plan with my local ISP, they gave me use of a public IP.  I used this to setup vpn access to the home network and to test out hosting something (this blog).  They gave me 3 values over the phone that I used to set it all up on the WAN interface of the firewall.
@@ -38,10 +56,17 @@ When I switched to the business plan with my local ISP, they gave me use of a pu
 * public ip (ex. 123.123.123.123)
 * gateway (ex. 123.123.123.122)
 * subnet mask (ex. 255.255.255.252)
-    * This would equate to a /30 [subnet](https://subnettingpractice.com/cheatsheet.html)
+    * This equates to a /30 [subnet](https://subnettingpractice.com/cheatsheet.html)
+
+## LAN
+
+#### DHCP
+
+#### DNS
+
+## VPN
 
 #### TODO
-* Upgraded to 1u server after testing
 * Configure WAN interface with static IP
 * LAN interface
 * DHCP
@@ -56,6 +81,8 @@ When I switched to the business plan with my local ISP, they gave me use of a pu
     * Transparent http
     * https proxy setup and handling certs
         * Uploading ca-certificates to your ubuntu machines with ansible
+* NAT
+  * Port forwarding public_ip:80 to the ghost blog
 
 #### Testing http proxy
 ```
