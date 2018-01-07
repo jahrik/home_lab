@@ -81,8 +81,8 @@ Step 11/11 : CMD ["python3","edward.py","-b","twitter"]
 Removing intermediate container 86f85cde3ffb
  ---> 745359ea9dd7
 Successfully built 745359ea9dd7
-Successfully tagged wgill/bot:0.1.1
-Successfully tagged wgill/bot:latest
+Successfully tagged jahrik/bot:0.1.1
+Successfully tagged jahrik/bot:latest
 
 ```
 
@@ -95,7 +95,7 @@ version: '3'
 services:
 
   twitter_bot:
-    image: wgill/bot:latest
+    image: jahrik/bot:latest
     environment:
       - TWITTER_KEY=${TWITTER_KEY}
       - TWITTER_SECRET=${TWITTER_SECRET}
@@ -106,7 +106,7 @@ services:
     command: python3 edward.py -b twitter
 
   hipchat_bot:
-    image: wgill/bot:latest
+    image: jahrik/bot:latest
     environment:
       - HIPCHAT_HOST=${HIPCHAT_HOST}
       - HIPCHAT_ROOM=${HIPCHAT_ROOM}
@@ -116,7 +116,7 @@ services:
     command: python3 edward.py -b hipchat
 
   gitter_bot:
-    image: wgill/bot:latest
+    image: jahrik/bot:latest
     environment:
       - GITTER_ROOM=${GITTER_ROOM}
       - GITTER_API_TOKEN=${GITTER_API_TOKEN}
@@ -152,8 +152,8 @@ Step 11/11 : CMD ["python3","edward.py","-b","twitter"]
  ---> Using cache
  ---> 745359ea9dd7
 Successfully built 745359ea9dd7
-Successfully tagged wgill/bot:0.1.1
-Successfully tagged wgill/bot:latest
+Successfully tagged jahrik/bot:0.1.1
+Successfully tagged jahrik/bot:latest
 Creating network edward_default
 Creating service edward_mongo
 Creating service edward_twitter_bot
@@ -165,10 +165,10 @@ Check these running services
 ```
 docker service ls
 ID                  NAME                 MODE                REPLICAS            IMAGE               PORTS
-uhupkuwb8i9m        edward_gitter_bot    replicated          1/1                 wgill/bot:latest
-ksq2svnphp70        edward_hipchat_bot   replicated          1/1                 wgill/bot:latest
+uhupkuwb8i9m        edward_gitter_bot    replicated          1/1                 jahrik/bot:latest
+ksq2svnphp70        edward_hipchat_bot   replicated          1/1                 jahrik/bot:latest
 b93o23brati8        edward_mongo         replicated          0/1                 mongo:latest        *:27017->27017/tcp
-re1zn2n3n9ff        edward_twitter_bot   replicated          1/1                 wgill/bot:latest
+re1zn2n3n9ff        edward_twitter_bot   replicated          1/1                 jahrik/bot:latest
 ```
 
 Check and see what the hell mongo is doing
