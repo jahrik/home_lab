@@ -1,4 +1,4 @@
-# Firewall
+# Building a firewall with pfSense
 
 When I first signed up with my current ISP a few years back, I started with a student plan that was around $35 a month for basic speeds.  More than enough for me to attend online classes and play the occasional MMO.  Fast-forward a few years and they were charging me about $180 a month because of our family's usage of video streaming services and massive game downloads for the PS4.  Me working from home more often and constantly downloading vagrant boxes and docker images all day didn't help either.  I called up my local ISP and asked about a business account.  I had to sign a 3 year contract, but they gave me the same speeds I had without the data caps, plus a public IP to use.  So I thought to myself, "Neat!, what can I do with that?  Maybe I could tinker around with hosting something?"
 
@@ -51,6 +51,7 @@ The netbook actually handled pfSense well enough, but being one of the mail fail
 ## WAN
 
 #### Public IP
+
 When I switched to the business plan with my local ISP, they gave me use of a public IP.  I used this to setup vpn access to the home network and to test out hosting something (this blog).  They gave me 3 values over the phone that I used to set it all up on the WAN interface of the firewall.
 
 * public ip (ex. 123.123.123.123)
@@ -58,7 +59,12 @@ When I switched to the business plan with my local ISP, they gave me use of a pu
 * subnet mask (ex. 255.255.255.252)
     * This equates to a /30 [subnet](https://subnettingpractice.com/cheatsheet.html)
 
+I plugged the ethernet adapted line into the router provided by my ISP and configured a Static IP the above mentioned information.  The easiest way I found to test this was to temporarily enable a rule to allow port 80 on the WAN interface to the management page.
+![wan firewall rule to allow port 80](https://github.com/jahrik/home_lab/raw/master/ghost/images/edit_wan_port_80.png)
+
 ## LAN
+
+The LAN network is easy enough to setup.  Pick a subnet that works with your current home network if you have one. 192.168.0.0/16, 10.0.0.0/8, or whatever you prefer.  Just be sure the use a network that works for a [private address space](https://www.arin.net/knowledge/address_filters.html)
 
 #### DHCP
 
@@ -67,8 +73,6 @@ When I switched to the business plan with my local ISP, they gave me use of a pu
 ## VPN
 
 #### TODO
-* Configure WAN interface with static IP
-* LAN interface
 * DHCP
 * DNS
     * Resolver
