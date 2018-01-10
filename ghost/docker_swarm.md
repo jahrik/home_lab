@@ -1,8 +1,8 @@
-# Docker Swarm
+# Docker Swarm using an old laptop
 
-I'm using an old [Samsung R580 laptop](https://www.cnet.com/products/samsung-r580-jsb1-15-6-core-i5-430m-4-gb-ram-500-gb-hdd/specs/) to create a docker swarm cluster of one.  I plan on adding a couple of 1u servers to this later, as I can afford it.  Once I'm done testing pfSense on the Asus EEE Netbook, I'll most likely bring it into the cluster as a backup until that happens.
+I'm using an old [Samsung R580 laptop](https://www.cnet.com/products/samsung-r580-jsb1-15-6-core-i5-430m-4-gb-ram-500-gb-hdd/specs/) to create a docker swarm cluster of one.  I plan on adding a couple of 1u servers to this later, as I can afford it.  Once I'm done testing pfSense on the Asus EEE Netbook, I'll most likely bring it into the cluster as a backup until I'm able to add the 1u servers.
 
-Docker has grown a lot over the past few years that I have been seriously playing around with it and using it at work.  Docker in swarm mode makes so many things possible quickly and simply.  I'll go over the steps for installation and deployment of our docker swarm cluster of one and give some quick pointers and DOs and DONTs if I can think of any along the way.
+Docker has grown a lot over the past few years.  During that time I have been seriously playing around with it and using it at work.  Docker in swarm mode makes so many things possible quickly and simply.  I'll go over the steps for installation and deployment of our docker swarm cluster of one and give some quick pointers and DOs and DONTs.
 
 ## You will need
 * 1 to 1000+ physical hosts, vms, ec2 instances, or whatever will run docker.
@@ -16,7 +16,7 @@ Docker has grown a lot over the past few years that I have been seriously playin
 
 You can easily manually check up on the health of your cluster from the command line with a few simple commands or perhaps corporate only needs a dashboard to look at and doesn't care for your nerdy commands.
 ```
-docker service ls                                                                                     
+docker service ls
 ID                  NAME                MODE                REPLICAS            IMAGE                             PORTS
 t9h59ml34qmh        viz_viz             replicated          1/1                 dockersamples/visualizer:latest   *:8080->8080/tcp
 ```

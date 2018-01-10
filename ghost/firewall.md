@@ -7,7 +7,7 @@ It took me about a week to get the public IP somewhat working.  I'm still not ha
 ## Installing pfSense
 
 [Download pfSense](https://www.pfsense.org/download/)
-I normally burn it to a usb, but you can also use a cd.  The dd command is my go to for this one.
+I normally burn it to a USB, but you can also use a cd.  The dd command is my go to for this one.
 
 First mount the usb and check to see what /dev/name it has.
 ```
@@ -45,8 +45,8 @@ The netbook actually handled pfSense well enough, but being one of the mail fail
   * 60G ssd
   * 2x4G RAM
 * Plans to find a 2 to 4 port ethernet card and flexible riser card, but have not yet.
-  * I'm still using the usb to ethernet adapter I was using in tests on the netbook.
-  * I'll get around to it eventually.
+  * I'm still using the USB to ethernet adapter I was using in tests on the netbook.
+  * This is still in development.
 
 ## WAN
 
