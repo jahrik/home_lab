@@ -16,6 +16,21 @@ Then I tacked on [ChatterBot](https://github.com/gunthercox/ChatterBot) and this
       * append training list
   * Train the bot
 
+The output looks like this.
+```
+2018-01-11 06:10:36.540 INFO edward - reddit_training: Training: ['They might be cut proof but are they electricity proof?', '\n\nI mean, they are steel wool, so I doubt it', 'Stick your finger in a socket and report back', 'They are indeed, but theyre having trouble proofing it', 'ight!? Unscrewing that lightbulb had me terrified!']
+2018-01-11 06:10:36.540 INFO edward - reddit_training: --------------------------------------------
+List Trainer: [####################] 100%
+2018-01-11 06:10:55.894 INFO edward - reddit_training: Training: ['The ones that are really expensive are. That’s why they’re expensive. ', 'Thanks John Madden.', "If things were any other way, they'd be different.", "So you're saying mithril *exists*?\n", 'NotKenM ?', 'you can tell by the way they are']
+2018-01-11 06:10:55.894 INFO edward - reddit_training: --------------------------------------------
+List Trainer: [####################] 100%
+2018-01-11 06:10:57.408 INFO edward - reddit_training: Training: ['Sharp knife.', 'But not sharp enough to cut their hand...', 'Also probably has the do with the ripeness of the tomato.', 'it was a better knife commercial than glove commercial', 'The knife even shines up in the gif right before they cut the tomato 😂']
+2018-01-11 06:10:57.408 INFO edward - reddit_training: --------------------------------------------
+List Trainer: [####################] 100%
+2018-01-11 06:11:00.432 INFO edward - reddit_training: Training: ['Thanks John Madden.', 'Their victories were all against their opponents!', 'aeiou', "But how's the price?", 'When you get a guy who can throw a ball, you call him a quarterback!', 'How is he not dead yet? ', "Somehow I've never realized that until this exact moment.", 'You can tell  because of the way it is']
+2018-01-11 06:11:00.432 INFO edward - reddit_training: --------------------------------------------
+```
+
 After that, I was able to made it work on Twitter using the [tweepy module](https://github.com/tweepy/tweepy).
 Check out how I was able to auto-follow followers using multiprocess and sleep [here](https://github.com/jahrik/edward/blob/cb36f29f736bad50af0f69a1f2d62a3268031c77/edward.py#L864).
 
