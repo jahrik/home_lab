@@ -1,6 +1,6 @@
 #  pi
 
-Learn to setup a raspberry pi with everything needed to get rolling with automated provisioning with ansible.  Ease future project deployments and save them to code control allowing you to replicate your work more easily down the road.
+Learn to setup a raspberry pi with everything needed to get rolling with automated provisioning with ansible.  Ease future project deployments and save them to code control allowing you to replicate your work more easily down the road.  You can find the [source code on github](https://github.com/jahrik/pi).
 
 Table of Contents
 =================
