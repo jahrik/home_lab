@@ -13,9 +13,9 @@ Create a file named Vagrantfile using the init command.
 vagrant init kennyl/pfsense
 ```
 
-Open is with whatever text editor you use and customize it to your liking.  I've added a few things that will help get things moving.
+Open it with whatever text editor you use and customize it to your liking.  I've added a few things that will help get things moving.
 
-Vagrantfile
+**Vagrantfile**
 ```
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
