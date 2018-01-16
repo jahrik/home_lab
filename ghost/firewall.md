@@ -4,14 +4,76 @@ When I first signed up with my current ISP a few years back, I started with a st
 
 It took me about a week to get the public IP somewhat working.  I'm still not happy with it and it still needs more work.  I'll try and explain it all here in hopes that I can save someone else out there some of the pain I went through figuring it all out.
 
-## Installing pfSense
+## Vagrant lab
 
-[Download pfSense](https://www.pfsense.org/download/)
+If you would like to test any of these setting in a virtual environment before committing them to your home lab, you can create a quick virtual environment with a few simple steps.  Here is one way to do so with vagrant and virtualbox. I'll be using a vagrant box from [kennyl/pfsense](https://app.vagrantup.com/kennyl/boxes/pfsense)
+
+Create a file named Vagrantfile using the init command.
+```
+vagrant init kennyl/pfsense
+```
+
+Open is with whatever text editor you use and customize it to your liking.  I've added a few things that will help get things moving.
+
+Vagrantfile
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+
+  config.vm.box = 'kennyl/pfsense'
+
+  # bridge to WiFi NIC for WAN interface
+  config.vm.network 'public_network', bridge: 'wlp4s0'
+
+  # bridge to Ethernet NIC for LAN interface
+  config.vm.network 'public_network', bridge: 'enp0s31f6'
+
+  # Disable folder sync to fix BSD mount error on linux
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+
+  config.vm.provider 'virtualbox' do |vb|
+
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = true
+
+    # Customize the amount of memory on the VM:
+    vb.memory = '1024'
+
+  end
+end
+```
+* wlp4s0 is my WiFi NIC
+* enp0s31f6 is my Ethernet NIC
+* You'll want to update the Vagrant file with the values on your machine
+
+I found these with the `ip link` command. Keep in mind that I'm on Arch linux.
+```
+ip link
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp0s31f6: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether <redacted> brd ff:ff:ff:ff:ff:ff
+3: wlp4s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DORMANT group default qlen 1000
+    link/ether <redacted> brd ff:ff:ff:ff:ff:ff
+```
+
+Start the vm with
+```
+vagrant up
+```
+![pfsense startup](https://github.com/jahrik/home_lab/raw/master/ghost/images/pfsense_startup.png)
+
+## Installing pfSense to your hardware
+
+From your workstation [download pfSense](https://www.pfsense.org/download/)
 I normally burn it to a USB, but you can also use a cd.  The dd command is my go to for this one.
 
-First mount the usb and check to see what /dev/name it has.
+First mount the usb and check to see what /dev/name it has with `lsblk`
 ```
 lsblk
+
 NAME                        MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINT
 sdb                           8:16   1   1.9G  0 disk
 ├─sdb1                        8:17   1   825M  0 part
