@@ -218,11 +218,7 @@ Browse to the public IP [52.25.231.162](http://52.25.231.162/) and I can see it 
 
 ![ghost default](https://github.com/jahrik/home_lab/blob/master/ghost/images/ghost_default.png?raw=true)
 
-#### Redirect my Google Domain Name to point at this IP instead of my homelab
-
-![google domain](https://github.com/jahrik/home_lab/blob/master/ghost/images/google_domain.png?raw=true)
-
-#### Redirect Cloudflare to the new public IP as well.
+#### Redirect Cloudflare to the new public IP.
 
 ![google domain](https://github.com/jahrik/home_lab/blob/master/ghost/images/cloudflare.png?raw=true)
 
