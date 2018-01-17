@@ -1,3 +1,4 @@
 *.swp
 squid_https.crt
 inventory.ini
+homelab.pem
