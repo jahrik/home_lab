@@ -1,6 +1,6 @@
 # Moving to the Cloud
 
-I will be moving to northern Idaho in less than a month and will need somewhere else to host home_lab during the time it takes to do so.  I already have an Amazon account, so I'll most likely spin up their smallest ec2 instance and upload it to that.  I'm still going to need a Public IP to point cloudflare at and a few other things I'm sure.  I'll go over all of that here.  You can download the [source code](https://github.com/jahrik/home_lab) from github to follow along.
+I will be moving to northern Idaho in less than a month and will need somewhere else to host homelab during the time it takes to do so.  I already have an Amazon account, so I'll most likely spin up their smallest ec2 instance and upload it to that.  I'm still going to need a Public IP to point cloudflare at and a few other things I'm sure.  I'll go over all of that here.  You can download the [source code](https://github.com/jahrik/home_lab) from github to follow along.
 
 ## AWS
 Defaults will normally work for this
@@ -215,16 +215,15 @@ ghost_blog.1.oxam1j4poq3m@ip-172-31-0-177    | [2018-01-17 08:02:08] INFO Ghost 
 
 Browse to your public IP [52.25.231.162](http://52.25.231.162/) and you should see it running.
 
-![ghost default](https://github.com/dockersamples/docker-swarm-visualizer/raw/master/ghost_default.png)
+![ghost default](https://github.com/jahrik/home_lab/blob/master/ghost/images/ghost_default.png?raw=true)
 
 #### Redirect my Google Domain Name to point at this IP instead of my homelab
 
-Login to Google domains and update it to point at our new Public IP address
-![google domain](https://github.com/dockersamples/docker-swarm-visualizer/raw/master/google_domain.png)
+![google domain](https://github.com/jahrik/home_lab/blob/master/ghost/images/google_domain.png?raw=true)
 
 #### Redirect Cloudflare to the new public IP as well.
 
-![google domain](https://github.com/dockersamples/docker-swarm-visualizer/raw/master/cloudflare.png)
+![google domain](https://github.com/jahrik/home_lab/blob/master/ghost/images/cloudflare.png?raw=true)
 
 #### Test it all out.
 
