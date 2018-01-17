@@ -7,30 +7,30 @@
   become_method: sudo
   tasks:
 
- #  - name: apt-get update && install deps
- #    apt:
- #      update_cache: yes
- #      name: "{{ item }}"
- #      state: present
- #    with_items:
- #      - vim
- #      - wget
- #      - rsync
- #      - make
- #    tags:
- #      - setup
- #      - deps
+  - name: apt-get update && install deps
+    apt:
+      update_cache: yes
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vim
+      - wget
+      - rsync
+      - make
+    tags:
+      - setup
+      - deps
 
-  - name: Ensure local certs directory exists
-    file:
-      state: directory
-      path: /usr/local/share/ca-certificates
+#   - name: Ensure local certs directory exists
+#     file:
+#       state: directory
+#       path: /usr/local/share/ca-certificates
 
-  - name: Install squid_https cert
-    copy:
-      src: ./squid_https.crt
-      dest: /usr/local/share/ca-certificates/squid_https.crt
-    notify: update-ca-certificates
+#   - name: Install squid_https cert
+#     copy:
+#       src: ./squid_https.crt
+#       dest: /usr/local/share/ca-certificates/squid_https.crt
+#     notify: update-ca-certificates
 
 #   - name: Generate /etc/hosts
 #     template:
@@ -43,26 +43,26 @@
 #       - setup
 #       - hosts
 
-  - name: Ignore lid close
-    lineinfile:
-      path: /etc/systemd/logind.conf
-      line: HandleLidSwitch=ignore
-    notify:
-      - restart systemd-logind service
-    tags:
-      - setup
-      - lid
+#   - name: Ignore lid close
+#     lineinfile:
+#       path: /etc/systemd/logind.conf
+#       line: HandleLidSwitch=ignore
+#     notify:
+#       - restart systemd-logind service
+#     tags:
+#       - setup
+#       - lid
 
-  handlers:
+#   handlers:
 
-    - name: restart systemd-logind service
-      service:
-        name: systemd-logind
-        state: restarted
-      tags:
-        - setup
-        - lid
+#     - name: restart systemd-logind service
+#       service:
+#         name: systemd-logind
+#         state: restarted
+#       tags:
+#         - setup
+#         - lid
 
-    - name: update-ca-certificates
-      command: /usr/sbin/update-ca-certificates
+#     - name: update-ca-certificates
+#       command: /usr/sbin/update-ca-certificates
 
