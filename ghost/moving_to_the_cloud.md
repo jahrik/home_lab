@@ -7,7 +7,7 @@ Defaults will normally work for this
 * A default VPC
 * Subnet within the VPC
 * An ssh key pair generated to access the ec2 instance.
-* An Elastic IP address linked to your instance to point DNS at.
+* An Elastic IP address linked to the instance to point DNS at.
 * t2.micro ubuntu ec2 instance
 * A security group
   * Enable 22 while we provision (disable after finished)
@@ -20,14 +20,14 @@ I started up a t2.micro ubuntu 16.04 instance
 * 8 GB Storage
 * FREE TIER ELIGIBLE
 
-Download the pem file at the end of creation to access your instance.
-`chown` it to restrict permission to the file and allow you to add it to your ssh-agent
+Download the pem file at the end of creation to access the instance.
+`chown` it to restrict permission to the file and allow it to be added ssh-agent
 ```
 chmod 600 homelab.pem
 ssh-add homelab.pem
 ```
 
-Next create an Elastic IP and link it to your instance from the 'Actions' drop down.  With this newly acquired public IP we can now get to business with provisioning our new machine and deploying ghost to the cloud.
+Next create an Elastic IP and link it to the instance from the 'Actions' drop down.  With this newly acquired public IP we can now get to business with provisioning our new machine and deploying ghost to the cloud.
 
 First lets test that we can login.
 Be sure and use the default user `ubuntu@<ip_address>` for a newly created ubuntu instance
@@ -40,13 +40,14 @@ ubuntu@ip-172-31-0-177:~$
 
 ## Ansible provisioning
 
-Next I'll create an inventory.ini file for ansible to access this machine with a few key variables
+Next I'll create an [aws_inv.ini](https://github.com/jahrik/home_lab/blob/master/aws_inv.ini) file for ansible to access this machine with a few key variables
 * hostname
 * username
 * ip address
 * network interface for swarm configs
+* swarm availability mode
 
-**inventory.ini**
+**aws_inv.ini**
 ```
 [manager]
 homelab
@@ -72,6 +73,7 @@ homelab | FAILED! => {
 
 Easy enough to fix this by installing python on the system first.
 ```
+ssh ubuntu@52.25.231.162
 sudo apt-get update && sudo apt-get install python
 ```
 
@@ -86,10 +88,9 @@ homelab | SUCCESS => {
 
 ### Install the base
 
-With that, we are ready to kick off a few scripts to get everything installed and running.
-First I need to update my site.yml file and take out the custom setup I have in there that I only needed for my laptop, like ignoring lid closure, etc...
+With that, we are ready to kick off a few scripts to get everything installed and running.  First I need to update my site.yml file and take out the custom setup I have in there that I only needed for my laptop, like ignoring lid closure, etc...
 
-Starter [site.yml](https://github.com/jahrik/home_lab/blob/master/site.yml) file to build on and add any dependencies you can think of.
+Starter [site.yml](https://github.com/jahrik/home_lab/blob/master/site.yml) file to build on and add any dependencies needed.
 
 **site.yml**
 ```
@@ -166,7 +167,7 @@ scp content.tar.gz ubuntu@52.25.231.162:/home/ubuntu/
 content.tar.gz                                                                               100%   19MB 639.9KB/s   00:31
 ```
 
-Inflate it
+Log back in and Inflate it
 ```
 sudo tar -xzvf content.tar.gz
 ```
@@ -213,7 +214,7 @@ ghost_blog.1.oxam1j4poq3m@ip-172-31-0-177    | [2018-01-17 08:02:08] INFO Ctrl+C
 ghost_blog.1.oxam1j4poq3m@ip-172-31-0-177    | [2018-01-17 08:02:08] INFO Ghost boot 2.106s
 ```
 
-Browse to your public IP [52.25.231.162](http://52.25.231.162/) and you should see it running.
+Browse to the public IP [52.25.231.162](http://52.25.231.162/) and I can see it running.
 
 ![ghost default](https://github.com/jahrik/home_lab/blob/master/ghost/images/ghost_default.png?raw=true)
 
