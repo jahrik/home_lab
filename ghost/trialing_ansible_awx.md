@@ -16,7 +16,7 @@ Table of Contents
     * [Docker](#docker)
     * [Pip](#pip)
     * [AWX](#awx)
-      * [EXAMPLE](#example)
+      * [Example](#example)
 
 ## Requirements
 
@@ -330,7 +330,7 @@ Use the default creds to log in for the first time.
 A brand new installation of AWX :-)
 ![awx_home](https://github.com/jahrik/home_lab/blob/master/ghost/images/awx_home.png?raw=true)
 
-#### EXAMPLE
+#### Example
 Start by clicking on Credentials to ADD a vagrant user and password for the lab boxes.  By default the `vagrant` user has a password of `vagrant`.  From the 'Credential Type' drop down chose `Machine`
 
 If you want to use an ssh key from a vagrant box you can find it here.
