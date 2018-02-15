@@ -328,3 +328,28 @@ Use the default creds to log in for the first time.
 
 A brand new installation of AWX :-)
 ![virtualbox](https://github.com/jahrik/home_lab/blob/master/ghost/images/awx_home.png?raw=true)
+
+#### EXAMPLE
+Start by clicking on Credentials to ADD a vagrant user and password for the lab boxes.  By default the `vagrant` user has a password of `vagrant`.  From the 'Credential Type' drop down chose `Machine`
+
+If you want to use an ssh key from a vagrant box you can find it here.
+
+    cat .vagrant/machines/ansible-awx/virtualbox/private_key
+
+![virtualbox](https://github.com/jahrik/home_lab/blob/master/ghost/images/awx_vagrant_creds.png?raw=true)
+
+Click on Inventory and ADD a new one to add the two virtualbox vms to it.
+![virtualbox](https://github.com/jahrik/home_lab/blob/master/ghost/images/awx_inventory.png?raw=true)
+
+* Create a `vagrant` inventory and click save.
+* Add the vagrant hosts to the vagrant inventory
+
+![virtualbox](https://github.com/jahrik/home_lab/blob/master/ghost/images/awx_hosts.png?raw=true)
+
+Create a new project and name it ansible-awx
+
+* name: ansible-awx
+* SCM type: Git
+* SCM url: https://github.com/jahrik/ansible-awx.git
+
+Save it and 
