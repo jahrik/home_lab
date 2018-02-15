@@ -6,6 +6,17 @@ I've been using chef for a few years now and ansible for about half that time.  
 
 So far, I have just been running all of my ansible playbooks from my laptop.  The day has come that I need to centralize all of this config management somewhere the rest of my collogues can see it and join in on the ansible fun I've been having.  I cannot afford to pay for Tower, so I've decided to see what AWX can do for me.
 
+Table of Contents
+=================
+
+  * [Requirements](#requirements)
+  * [Vagrant](#vagrant)
+  * [Installation](#installation)
+    * [Ansible](#ansible)
+    * [Docker](#docker)
+    * [Pip](#pip)
+    * [AWX](#awx)
+
 ## Requirements
 
 * [Vagrant](https://www.vagrantup.com/docs/installation/)
@@ -312,6 +323,7 @@ Browse to [192.168.33.11:80](http://192.168.33.11:80) to checkout it out!
 Use the default creds to log in for the first time.
 * admin
 * password
+
 ![virtualbox](https://github.com/jahrik/home_lab/blob/master/ghost/images/awx_login.png?raw=true)
 
 A brand new installation of AWX :-)
