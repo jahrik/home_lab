@@ -1,26 +1,49 @@
 ---
-################################################################################
-# Setup
-################################################################################
 - hosts: all
   become: true
   become_method: sudo
   tasks:
 
-  - name: apt-get update && install deps
-    apt:
-      update_cache: yes
-      name: "{{ item }}"
-      state: present
-    with_items:
-      - vim
-      - wget
-      - rsync
-      - make
-    tags:
-      - setup
-      - deps
+    - name: apt-get update && install deps
+      apt:
+        update_cache: yes
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - vim
+        - wget
+        - rsync
+        - make
+      tags:
+        - setup
+        - deps
 
+    - name: Ignore lid close
+      lineinfile:
+        path: /etc/systemd/logind.conf
+        line: HandleLidSwitch=ignore
+      notify:
+        - restart systemd-logind service
+      tags:
+        - setup
+        - lid
+
+  handlers:
+
+    - name: restart systemd-logind service
+      service:
+        name: systemd-logind
+        state: restarted
+      tags:
+       - setup
+       - lid
+
+    - name: update-ca-certificates
+      command: /usr/sbin/update-ca-certificates
+
+
+
+# MORE TASKS
 #   - name: Ensure local certs directory exists
 #     file:
 #       state: directory
@@ -42,27 +65,3 @@
 #     tags:
 #       - setup
 #       - hosts
-
-#   - name: Ignore lid close
-#     lineinfile:
-#       path: /etc/systemd/logind.conf
-#       line: HandleLidSwitch=ignore
-#     notify:
-#       - restart systemd-logind service
-#     tags:
-#       - setup
-#       - lid
-
-#   handlers:
-
-#     - name: restart systemd-logind service
-#       service:
-#         name: systemd-logind
-#         state: restarted
-#       tags:
-#         - setup
-#         - lid
-
-#     - name: update-ca-certificates
-#       command: /usr/sbin/update-ca-certificates
-
