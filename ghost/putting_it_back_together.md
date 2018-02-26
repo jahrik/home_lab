@@ -72,4 +72,4 @@ A few more parts for this will be here next Monday!
 
 I'm still a ways out to affording [the motherboard](https://www.amazon.com/dp/B00GG94YDS/_encoding=UTF8?coliid=I6IV40DWMM4HD&colid=38OM4T826B6H8&psc=0) I want for this build, but I've got some supplies to get me started.
 
-I'm happy with how it's all coming together this time around and excited to bring up [Ansible AWX](https://homelab.business/trialing-ansible-awx/) and provision docker swarm across the three laptops.
+I'm happy with how it's all coming together this time around and excited to bring up [Ansible AWX](https://homelab.business/trialing-ansible-awx/) and provision docker swarm across the three laptops.  Next, I plan on getting AWS to run on docker swarm as apposed to running it with docker-compose for a little more stability and get an ELK stack, Grafana and finally bring this Ghost blog back down from AWS once I get my public IP working.
