@@ -39,10 +39,10 @@ I've been patiently waiting for the ISP up here to install a wire into my office
 
 If you're looking into using dd-wrt yourself, you might want to start out here: [www.dd-wrt.com/wiki/index.php/Firmware_FAQ](https://www.dd-wrt.com/wiki/index.php/Firmware_FAQ).  If you start with googling dd-wrt, you might end up using the router database, which doesn't get you very far, as it's no longer kept up to date.  Once you've read through that a bit, you can check to see if your router is in [dd-wrt beta downloads](https://download1.dd-wrt.com/dd-wrtv2/downloads/betas/).
 
-Out of the 5 routers I have, I was able to successfully flash one of them.  The Netgear WNR2000v3 ended up getting bricked, but sometimes those things happen when it's 2 a.m. and 5 beers in.  The Linksys E1000 worked like a charm and dd-wrt unlocked a ton of functionality.
+Out of the 5 routers I have, I was able to successfully flash one of them.  The Netgear WNR2000v3 ended up getting bricked, but sometimes those things happen when it's 2 a.m. and you're 5 beers in.  The Linksys E1000 worked like a charm and dd-wrt unlocked a ton of functionality.
 
 I followed the [Client Bridged](https://www.dd-wrt.com/wiki/index.php/Client_Bridged) setup on their site to get a connection from the router in my bedroom to this one and finally start updating and re-configuring the lab!
-[Pic from the dd-wrt site for client bridge](https://www.dd-wrt.com/wiki/index.php/Image:Client_Bridge.jpg)
+![Pic from the dd-wrt site for client bridge](https://www.dd-wrt.com/wiki/images/7/7d/Client_Bridge.jpg)
 
 ## Firewall
 
