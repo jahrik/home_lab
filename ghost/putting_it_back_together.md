@@ -1,6 +1,6 @@
 # Putting it back together
 
-I recently made a move to Northern Idaho and after a couple weeks of packing and unpacking, I am finally comfortable in our new little apartment.  I've been putting the homelab back to together and making some improvements along the way.  It's been a fun way to re-access the positioning and wiring of everything in the 24", 2-post rack I'm using. I went ahead and turned my old gaming rig into a FreeNAS box for now, util I can afford all the parts for the 2u FreeNAS box I have planned.  I bought the case for that already and have a few other parts on the way!  This time around, I am also incorporating another old laptop into the docker swarm cluster; making it a total of 3 old laptops in the cluster.  I'll be able to put quite a bit on this and have persistent data by mounting the FreeNAS box as as NFS share across the cluster.  Should be a pretty reliable setup for what it is.
+I recently moved to Northern Idaho and had to [move this blog to the cloud](https://homelab.business/moving-to-the-cloud/) while I make the transition.  After a couple weeks of packing and unpacking, I am finally comfortable in our new little apartment.  I've been putting the homelab back to together and making some improvements along the way.  It's been a fun way to re-access the positioning and wiring of everything in the 24", 2-post rack I'm using. I went ahead and turned my old gaming rig into a FreeNAS box for now, util I can afford all the parts for the 2u FreeNAS box I have planned.  I bought the case for that already and have a few other parts on the way!  This time around, I am also incorporating another old laptop into the docker swarm cluster; making it a total of 3 old laptops in the cluster.  I'll be able to put quite a bit on this and have persistent data by mounting the FreeNAS box as as NFS share across the cluster.  Should be a pretty reliable setup for what it is.
 
 I am still eagerly waiting for the ISP up here to come run a new cable to my office so I can have a direct connection to the internet.  Until that day comes, I am using an old Cisco E1000 router.  The only router, in a pile of 5 I have lying around, that I was able to flash with dd-wrt.  Sorry WNR2000v3, may you find peace in router heaven.  I configured a wireless bridge from the router in my bedroom to this E1000 in my office on the other side of the house.  I racked my brain for 3 solid days trying to set up WDS with a pair of TRENDnet routers I have and COULD NOT get it working for the life of me!  I finally ended up with a working connection on the E1000 and was able to plug my firewall into a LAN port and connect the homelab to the internet to start rebuilding and updating everything!
 
@@ -56,7 +56,7 @@ I reset PfSense to factory defaults and just have a DHCP connection from WAN to 
 
 ## FreeNAS
 
-I don't do a whole lot of gaming anymore, so I decided to put my old gaming machine to good use by loading whatever hard disks I can find and installing FreeNAS.  I worked out pretty well and now I have 2.5T of storage to work with.  This machine has an Intel i5 and 8G of RAM.  I was able to find two 1T hard drives and one 750G hard drive.  I have it set up with a RAID-Z1 which provides me no redundancy and if one of these drives fails, I'm pretty much screwed as I understand it.  So this is NOT a reliable backup solution, but works for my setup right now as I build the real FreeNAS box.
+I don't do a whole lot of gaming anymore, so I decided to put my old gaming machine to good use by loading whatever hard disks I could find and installing FreeNAS.  It worked out pretty well and now I have 2.5T of storage to work with.  This machine has an Intel i5 and 8G of RAM.  I was able to find two 1T hard drives and one 750G hard drive.  I have it set up with a RAID-Z1 which provides me no redundancy and if one of these drives fails, I'm pretty much screwed as I understand it.  So this is NOT a reliable backup solution, but works for my setup right now as I build the real FreeNAS box.
 ![old_gaming_machine](https://github.com/jahrik/home_lab/raw/master/ghost/images/old_gaming_machine.jpg)
 
 I ordered and fit the new [2u box](https://www.amazon.com/gp/product/B00A7NBO6E/ref=oh_aui_detailpage_o06_s00?ie=UTF8&psc=1) that will be housing FreeNAS in the rack to see how it looks and I'm happy so far.
@@ -67,7 +67,9 @@ A few more parts for this will be here next Monday!
 * [1 of 2 fans](https://www.amazon.com/gp/product/B00KF7OMTI/ref=oh_aui_detailpage_o03_s00?ie=UTF8&psc=1)
 * [This EVGA power supply](https://www.amazon.com/gp/product/B01LWTS2UL/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)
   * I'm really hoping this one works out, if I can figure out how to secure it.
-  * I spent a long time searching 2U power supplies, but none offered space for 6 STAT connections.
+  * I spent a long time searching 2U power supplies, but none offered space for 6 SATA connections.
   * This one looks slim enough to fit into a 2U box.
 
 I'm still a ways out to affording [the motherboard](https://www.amazon.com/dp/B00GG94YDS/_encoding=UTF8?coliid=I6IV40DWMM4HD&colid=38OM4T826B6H8&psc=0) I want for this build, but I've got some supplies to get me started.
+
+I'm happy with how it's all coming together this time around and excited to bring up [Ansible AWX](https://homelab.business/trialing-ansible-awx/) and provision docker swarm across the three laptops.
