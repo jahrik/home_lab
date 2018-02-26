@@ -39,10 +39,10 @@ I've been patiently waiting for the ISP up here to install a wire into my office
 
 If you're looking into using dd-wrt yourself, you might want to start out here: [www.dd-wrt.com/wiki/index.php/Firmware_FAQ](https://www.dd-wrt.com/wiki/index.php/Firmware_FAQ).  If you start with googling dd-wrt, you might end up using the router database, which doesn't get you very far, as it's no longer kept up to date.  Once you've read through that a bit, you can check to see if your router is in [dd-wrt beta downloads](https://download1.dd-wrt.com/dd-wrtv2/downloads/betas/).
 
-*Out of the 5 routers I have, I was able to successfully flash one of them.  The Netgear WNR2000v3 ended up getting bricked, but sometimes those things happen when it's 2 a.m. and 5 beers in.  The Linksys E1000 worked like a charm and dd-wrt unlocked a ton of functionality.
+Out of the 5 routers I have, I was able to successfully flash one of them.  The Netgear WNR2000v3 ended up getting bricked, but sometimes those things happen when it's 2 a.m. and 5 beers in.  The Linksys E1000 worked like a charm and dd-wrt unlocked a ton of functionality.
 
 I followed the [Client Bridged](https://www.dd-wrt.com/wiki/index.php/Client_Bridged) setup on their site to get a connection from the router in my bedroom to this one and finally start updating and re-configuring the lab!
-![Pic from the dd-wrt site for client bridge](https://www.dd-wrt.com/wiki/index.php/Image:Client_Bridge.jpg)
+[Pic from the dd-wrt site for client bridge](https://www.dd-wrt.com/wiki/index.php/Image:Client_Bridge.jpg)
 
 ## Firewall
 
@@ -57,6 +57,7 @@ I reset PfSense to factory defaults and just have a DHCP connection from WAN to 
 ## FreeNAS
 
 I don't do a whole lot of gaming anymore, so I decided to put my old gaming machine to good use by loading whatever hard disks I can find and installing FreeNAS.  I worked out pretty well and now I have 2.5T of storage to work with.  This machine has an Intel i5 and 8G of RAM.  I was able to find two 1T hard drives and one 750G hard drive.  I have it set up with a RAID-Z1 which provides me no redundancy and if one of these drives fails, I'm pretty much screwed as I understand it.  So this is NOT a reliable backup solution, but works for my setup right now as I build the real FreeNAS box.
+![old_gaming_machine](https://github.com/jahrik/home_lab/raw/master/ghost/images/old_gaming_machine.jpg)
 
 I ordered and fit the new [2u box](https://www.amazon.com/gp/product/B00A7NBO6E/ref=oh_aui_detailpage_o06_s00?ie=UTF8&psc=1) that will be housing FreeNAS in the rack to see how it looks and I'm happy so far.
 ![2u freenas box](https://github.com/jahrik/home_lab/raw/master/ghost/images/2u_freenas_box.jpg)
