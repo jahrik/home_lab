@@ -87,14 +87,16 @@ Set the containers you will be testing this on in `./molecule/default/molecule.y
     ---
     dependency:
       name: galaxy
+      options:
+        role-file: requirements.yml
     driver:
       name: docker
     lint:
       name: yamllint
     platforms:
-      - name: fedora-27
+      - name: fedora
         image: fedora:27
-      - name: ubuntu-16.04
+      - name: ubuntu
         image: ubuntu:16.04
     provisioner:
       name: ansible
@@ -102,11 +104,22 @@ Set the containers you will be testing this on in `./molecule/default/molecule.y
         name: ansible-lint
     scenario:
       name: default
+      test_sequence:
+        - lint
+        - destroy
+        - dependency
+        - syntax
+        - create
+        - prepare
+        - converge
+        - idempotence
+        - side_effect
+        - verify
+        - destroy
     verifier:
       name: testinfra
       lint:
         name: flake8
-
 
 ## Role
 
