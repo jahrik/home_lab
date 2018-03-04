@@ -1,6 +1,6 @@
 # Creating and testing an ansible role with molecule.
 
-Vim is my favorite text editor and a tool that I use every day at work and at home.  If you are in the IT field, you can relate that a text editor is one of your most powerful tools.  Being comfortable and proficient in text_editor_of_your_choice seams like a basic skill, that could get overlooked, but is a very valuable skill to have.  As a sysadmin, you will most likely only be using the default settings in vim or nano across all the systems you manage, but on your personal system and workstation you should go nuts and customize the hell out of it.  I use vundle to handle plugins and end up with a customized .vimrc file to handle the rest.  If I had to do this setup manually, it would take a few hours at least.  With tools like ansible, you can easily recreate the customization you prefer across all of your systems, be that at work or your homelab and save yourself hours of frustration and repetition.
+Vim is my favorite text editor and a tool that I use every day at work and at home.  If you are in the IT field, you can relate that a text editor is one of your most powerful tools.  Being comfortable and proficient in "{{ text_editor_of_your_choice }}" seams like a basic skill, that could get overlooked, but is a very valuable skill to have.  As a sysadmin, you will most likely only be using the default settings in vim or nano across all the systems you manage, but on your personal system and workstation you should go nuts and customize the hell out of it.  I use vundle to handle plugins and end up with a customized .vimrc file to handle the rest.  If I had to do this setup manually, it would take a few hours at least.  Half of that time Googling how I did something before and the other half forgetting what was there to begin with.  With tools like ansible, you can easily recreate the customization you prefer across all of your systems, be that at work or your homelab and save yourself hours of frustration and repetition.
 
 Ansible is a very reliable tool for managing your local workstation.  A good place to start automating is at the base of your every day setup: text editor, user, groups, base packages, and every day tools inevitably installed anytime you get a new system or accidentally lose or kill your old one.  If you are setting up Ansible for the first time, you'll want to start with their [install docs](http://docs.ansible.com/ansible/latest/intro_installation.html).  Once you've got it installed and are ready to go.  My initial plan was to do this with a couple of vagrant boxes in my traditional way of testing new things by creating a Vagrantfile and going from there, but after getting started writing this and considering test kitchen, I've decided to check out [molecule](https://molecule.readthedocs.io/en/latest/index.html) instead.  It looks like the write tool for the job.
 
@@ -222,7 +222,7 @@ Vim should be successfully passing tests and installing in both environments by 
       tags:
         - vim
 
-The list of plugins to be installed with Vundle are going to very from person to person and grow and change, so these should be handled as variables.  Add variables to `./defaults/main.yml`.  These variables will then be added to the .vimrc when it is created.  The `vundle` variable is the list of vundle plugins that will be installed.  Any and all of these variables can be over-written in a multitude of ways down the line, but if you don't, this is what they will default to.  If you're familiar with vim already, some of these variables should make sense.  It makes more sens when the file is created.
+The list of plugins to be installed with Vundle are going to very from person to person and grow and change, so these should be handled as variables.  Add variables to `./defaults/main.yml`.  These variables will then be added to the .vimrc when it is created.  The `vundle` variable is the list of vundle plugins that will be installed.  Any and all of these variables can be over-written in a multitude of ways down the line, but if you don't, this is what they will default to.  If you're familiar with vim already, some of these variables should make sense.
 
 **./defaults/main.yml**
 
@@ -414,7 +414,7 @@ Handlers are tasks that get called if something happens.  Create a handler that 
 
 ## Galaxy
 
-Ansible galaxy is a public place to store roles for later use, much like github.  Uploading this role was as aeasy as creating an ansible.com account and linking it to github.  Because I have a meta/manin.yml file in my project it picked up on the vim role.  It took a couple of days to get it to sync, but seams to be working now.
+Ansible galaxy is a public place to store roles for later use, much like github.  Uploading this role was as aeasy as creating an ansible.com account and linking it to github.  Because I have a meta/main.yml file in my project it picked up on the vim role.  It took a couple of days for me to get it to sync, but seams to be working now.
 
 Now it is possible to download this role from galaxy.
 
