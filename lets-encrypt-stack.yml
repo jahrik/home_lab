@@ -1,0 +1,24 @@
+# https://github.com/linuxserver/docker-letsencrypt
+version: '3'
+
+services:
+
+  letsencrypt:
+    # --cap-add=NET_ADMIN \
+    image: linuxserver/letsencrypt
+    environment:
+      PUID: "${PUID}"
+      PGID: "${PGID}"
+      EMAIL: "jahrik@gmail.com"
+      URL: "homelab.business"
+      SUBDOMAINS: "www"
+      TZ: "${TZ}"
+      VALIDATION: dns # http, tls-sni, dns
+      DNSPLUGIN: cloudflare # cloudflare, cloudxns, digitalocean, dnsimple, dnsmadeeasy, google, luadns, nsone, rfc2136 and route53
+    volumes:
+      - /data/letsencrypt:/config
+    deploy:
+      replicas: 1
+    ports:
+      - '80:80'
+      - '443:443'

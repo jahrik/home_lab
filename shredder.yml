@@ -1,0 +1,41 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+  vars:
+    docker_dir: /shredder_pool/var/lib/docker
+
+  tasks:
+
+    # https://gist.github.com/jokla/2632d3097b38c474eedf72b973262368
+
+    - name: configure /etc/docker/daemon.json.j2
+      template:
+        src: docker_daemon.json.j2
+        dest: /etc/docker/daemon.json
+      register: daemon_json
+
+    - name: Ensure directories exist
+      file:
+        path: "{{ docker_dir }}"
+        state: directory
+      when: daemon_json.changed
+
+    - name:
+      synchronize:
+        src: /var/lib/docker/
+        dest: "{{ docker_dir }}"
+        delete: yes
+        recursive: yes
+      delegate_to: "{{ inventory_hostname }}"
+      when: daemon_json.changed
+      notify: restart docker
+
+  handlers:
+
+    - name: restart docker
+      systemd:
+        name: docker.service
+        state: restarted
+        enabled: yes
+        daemon_reload: yes

@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+  gather_facts: false
+
+  tasks:
+
+    - name: Bootstrap a host without python2 installed
+      raw: apt-get install -y python
+
+      # - name: add user to sudoers group and allow passwordless ssh
+        # become: false
+        # line: {{ lookup('env','USER') }} ALL=(ALL) NOPASSWD: ALL
+ 
+      # - name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
+      # raw: cat < /tmp/*txt
+      # args:
+        # executable: /bin/bash
+
+
+# ADD SSH KEYS
+# - hosts: freenas
+  # become: true
+  #
+  # /usr/local/etc/pkg/repos/FreeBSD.conf
