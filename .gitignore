@@ -1,3 +1,4 @@
 *.swp
 squid_https.crt
 homelab.pem
+*config
