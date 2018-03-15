@@ -1,4 +1,10 @@
 {
-  "graph": "{{ docker_dir }}",
-  "storage-driver": "zfs"
-}
+  "storage-driver": "{{ storage_driver }}",
+  "graph": "{{ graph }}",
+  "log-driver": "{{ log_driver }}",
+  "log-opts": {
+    "max-size": "{{ log_opts.max_size }}",
+    "max-file": "{{ log_opts.max_file }}"
+  },
+  "debug": {{ debug }}
+} 
