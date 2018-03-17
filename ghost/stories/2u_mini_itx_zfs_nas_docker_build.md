@@ -6,6 +6,9 @@ I have a small 2-post 12U rack that hosts my homelab.  It sits in my home office
 
 | Part | Details | Amount | Price | Total |
 |:---- |:-------:|:-------:|:------:|:-----:| ------:|
+| thing | stuff  | do      | that   | thing | stuff  | 
+
+
 | [Chassis](https://www.amazon.com/gp/product/B00A7NBO6E/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | 19 x 15.35 x 3.5 in There's a vent in the lid for the power supply | 1 | $88.91 | $88.91 |
 | [Power Supply](https://www.amazon.com/gp/product/B01LWTS2UL/ref=oh_aui_detailpage_o05_s00?ie=UTF8&psc=1) | 550W, Modular,3.35in (35.09mm), which fits in the 2U snug. | 1 | $79.99 | $79.99 |
 | [Disk Cage](https://www.amazon.com/gp/product/B004IMKTUW/ref=oh_aui_detailpage_o07_s01?ie=UTF8&psc=1) | 2BAY 5.25IN Sas 2X5.25 To 3X3.5 Cage | $67.99 | $67.99 |
