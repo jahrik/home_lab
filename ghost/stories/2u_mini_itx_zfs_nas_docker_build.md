@@ -14,7 +14,7 @@ I have a small 2-post 12U rack that hosts my homelab.  It sits in my home office
 | [CPU Fan](https://www.amazon.com/gp/product/B075SF5QQ8/ref=oh_aui_detailpage_o02_s01?ie=UTF8&psc=1) | 1 | $49.90 | $49.90 |
 | [CPU](https://www.amazon.com/gp/product/B0759FGJ3Q/ref=od_aui_detailpages00?ie=UTF8&psc=1) | 1 | $179.00 | $179.00 |
 | [Motherboard](https://www.amazon.com/gp/product/B07638L88W/ref=od_aui_detailpages01?ie=UTF8&psc=1) | 1 | $134.99 | $134.99 |
-| [Memory](https://www.amazon.com/gp/product/B019FRCQAK/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1) | 1 kit (2x16g sticks) | $329.99 | $329.99 |
+| [Memory](https://www.amazon.com/gp/product/B019FRCQAK/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1) | 1 (2x16G) | $329.99 | $329.99 |
 | [SSD](https://www.amazon.com/gp/product/B01IAGSDJ0/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | 1 | $89.99 | $89.99 |
 |**Total**|||**$1370**|
 
