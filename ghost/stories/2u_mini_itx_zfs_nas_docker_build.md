@@ -64,7 +64,7 @@ Of course I was impatient while I waited for the motherboard to be delivered and
 Had to use a splitter to reach that last 6th drive.  Not for a lack of connections with the power supply, but length of cable.
 ![hard_drive_power_splitter_thing.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/hard_drive_power_splitter_thing.jpg?raw=true)
 
-I really enjoy this crazy looking thing.  I think the main reason I bought it was because it looks so cool.  It functions very well and is whisper like you would expect from Noctua.
+I really enjoy this crazy looking thing.  I think the main reason I bought it was because it looks so cool.  It functions very well and is whisper quiet, like you would expect from Noctua.
 ![cpu_cooler_bottom.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/cpu_cooler_bottom.jpg?raw=true)
 ![cpu_cooler_top.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/cpu_cooler_top.jpg?raw=true)
 
@@ -96,7 +96,7 @@ Installing the M.2 SSD.  This thing is so fast!!!
 ![m_2_install_fits.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/m_2_install_fits.jpg?raw=true)
 
 Powering it on for the first time.
-![power_it_on.mov](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/power_it_on.mov?raw=true)
+[![power_it_on.mov](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/power_it_on.mov?raw=true)](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/power_it_on.mov?raw=true)
 
 PLEX runs on docker like a champ and is storing Libraries on the ZFS share.  Doing some Transcoding to stress test the system.
 ![stress_testing.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/stress_testing.jpg?raw=true)
