@@ -4,9 +4,6 @@ After about a years worth of planning, I have finally built my 2U smallish form 
 
 I have a small 2-post 12U rack that hosts my homelab.  It sits in my home office within ear-shot of my desk, so I have a few requirements when it comes to putting things together.  Most important being size and sound.  I found a 2u chassis on Amazon and stuffed as much power as I could afford in to it.  I'm extremely happy with the results and am having a blast configuring my new machine.
 
-
-This table is kinda shitty on docker ghost so here's a [link to the github page](https://github.com/jahrik/home_lab/blob/master/ghost/stories/2u_mini_itx_zfs_nas_docker_build.md) if you want to check it out there.
-
 | Part        |  Amount  |  Price  | Total |
 |:----------- |:--------:|:-------:| -----:|
 | [Chassis](https://www.amazon.com/gp/product/B00A7NBO6E/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | 1 | $88.91 | $88.91 |
