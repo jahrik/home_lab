@@ -16,5 +16,5 @@ I have a small 2-post 12U rack that hosts my homelab.  It sits in my home office
 | [Motherboard](https://www.amazon.com/gp/product/B07638L88W/ref=od_aui_detailpages01?ie=UTF8&psc=1) | ASRock motherboard Motherboards Z370M-ITX/AC | 1 | $134.99 | $134.99 |
 | [Memory](https://www.amazon.com/gp/product/B019FRCQAK/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1) | Crucial 32GB Kit (16GBx2) DDR4 2400 MT/s (PC4-19200) DR x8 DIMM 288-Pin Memory - CT2K16G4DFD824A | 1 kit (2x16G sticks) | $329.99 | $329.99 |
 | [SSD](https://www.amazon.com/gp/product/B01IAGSDJ0/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | OS disk. Crucial MX300 275GB 3D NAND SATA M.2 (2280) Internal SSD - CT275MX300SSD4.  I started with ubuntu installed on a USB, but it was painfully slow, so I sacrificed SATA_0 and went with this M.2 SSD.  This thing is fast as Hell and I'm OK with the loss of space without that 6th SATA drive. | 1 | $89.99 | $89.99 |
-|||||**TOTAL: $1370**|
+|**TOTAL**||||**$1370**|
 
