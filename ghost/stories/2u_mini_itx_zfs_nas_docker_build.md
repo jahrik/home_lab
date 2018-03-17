@@ -68,7 +68,7 @@ I really enjoy this crazy looking thing.  I think the main reason I bought it wa
 ![cpu_cooler_bottom.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/cpu_cooler_bottom.jpg?raw=true)
 ![cpu_cooler_top.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/cpu_cooler_top.jpg?raw=true)
 
-This took some time to get a connection on the screws to fasten it to the board.  You have to use the small holed at the top to fit the screw driver in and I wasn't smart enough at the time to think about removing the fan from the unit while installing and adding it back on later.  I think that might help.
+This took some time to get a connection on the screws to fasten it to the board.  You have to use the small holes at the top to fit the screw driver in and I wasn't smart enough at the time to think about removing the fan from the unit while installing and adding it back on later.  I think that might help.
 ![cpu_cooler_barely_fits.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/cpu_cooler_barely_fits.jpg?raw=true)
 
 The motherboard.
