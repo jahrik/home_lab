@@ -16,7 +16,7 @@ I have a small 2-post 12U rack that hosts my homelab.  It sits in my home office
 | [Motherboard](https://www.amazon.com/gp/product/B07638L88W/ref=od_aui_detailpages01?ie=UTF8&psc=1) | 1 | $134.99 | $134.99 |
 | [Memory](https://www.amazon.com/gp/product/B019FRCQAK/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1) | 1 kit (2x16g sticks) | $329.99 | $329.99 |
 | [SSD](https://www.amazon.com/gp/product/B01IAGSDJ0/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | 1 | $89.99 | $89.99 |
-|**Total**||||**$1370**|
+|**Total**|||**$1370**|
 
 This server ended up being powerful enough to replace my 3-node docker swarm cluster built from old laptops and my gaming machine turned FreeNAS box.  This means a significant decrease in power consumption and maintenance for me.  Overall, I'm really happy with how it's performing.  I did end up fumbling around for the first few hours on the BIOS of the Z370M-ITX/AC until I got used to it.  One main gotcha I ran into was having to add my USB and then SSD to the UEFI boot list in the BIOS in order to get them to boot correctly.  It took me hours of failing to boot to figure this out.  What a pain in the ass...
 
