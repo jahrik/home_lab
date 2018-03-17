@@ -18,21 +18,35 @@ I have a small 2-post 12U rack that hosts my homelab.  It sits in my home office
 | [SSD](https://www.amazon.com/gp/product/B01IAGSDJ0/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1) | OS disk. Crucial MX300 275GB 3D NAND SATA M.2 (2280) Internal SSD - CT275MX300SSD4.  I started with ubuntu installed on a USB, but it was painfully slow, so I sacrificed SATA_0 and went with this M.2 SSD.  This thing is fast as Hell and I'm OK with the loss of space without that 6th SATA drive. | 1 | $89.99 | $89.99 |
 |**Total**||||**$1370**|
 
-This server ended up being powerful enough to replace my 3-node, old-laptop docker swarm cluster and my gaming machine turned FreeNAS box.  This means a significant decrease in power consumption and maintenance for me.  Of course, I'll bring an old laptop or two back into the mix soon enough, I do need a security onion box next and the old Samsung r580 will run that just fine.  Overall, I'm really happy with how it's performing.  I did end up fumbling around for the first few hours on the BIOS of the Z370M-ITX/AC until I got used to it.  One main gotcha I ran into was having to add my USB and then SSD to the UEFI boot list in the BIOS in order to get them to boot correctly.  It took me hours of failing to boot to figure this out.  What a pain in the ass...
+This server ended up being powerful enough to replace my 3-node docker swarm cluster built from old laptops and my gaming machine turned FreeNAS box.  This means a significant decrease in power consumption and maintenance for me.  Of course, I'll bring an old laptop or two back into the mix soon enough, I do need a security onion box next and the old Samsung r580 will run that just fine.  Overall, I'm really happy with how it's performing.  I did end up fumbling around for the first few hours on the BIOS of the Z370M-ITX/AC until I got used to it.  One main gotcha I ran into was having to add my USB and then SSD to the UEFI boot list in the BIOS in order to get them to boot correctly.  It took me hours of failing to boot to figure this out.  What a pain in the ass...
 
+Here she is with the lid on.
 ![complete_lid_on.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/complete_lid_on.jpg?raw=true)
+
+It's a snug fit.
 ![complete_lid_off.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/complete_lid_off.jpg?raw=true)
 
+Loading these three drives was very easy with this thing.  Plus it looks cool.
 ![disk_cage_front.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/disk_cage_front.jpg?raw=true)
 ![disk_cage_open.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/disk_cage_open.jpg?raw=true)
+
+The power supply fit as far as size goes.  The screws however did not line up.  I was able to get one screw in the spot that has some wiggle room.  This is a great unit and has all the cables I could ever need for quite a few builds.  It was a tight fit in the box, but is kicking ass.
 ![psu_back.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/psu_back.jpg?raw=true)
-![complete_old_motherboard.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/complete_old_motherboard.jpg?raw=true)
+
+There is a vent built in to the top of the lid for the power supply to breath.
 ![psu_vent.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/psu_vent.jpg?raw=true)
+
+Of course I was impatient while I waited for the motherboard to be delivered and had to test out this build with an old motherboard.
+![complete_old_motherboard.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/complete_old_motherboard.jpg?raw=true)
+
+While installing this server the first couple of times, it wasn't even fully loaded with drives and all the goodies.  I held it in one hand while fumbling with the screwdriver in the other.  I eventually figured out I could save myself some pain by propping it up on my feet while I fasten it to the rack.
 ![holding_server_with_feet.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/holding_server_with_feet.jpg?raw=true)
+
+The fans came next.  I 
 ![fan_install_ready.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_ready.jpg?raw=true)
-![fan_install_fans_ready.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_fans_ready.jpg?raw=true)
 ![fan_install_front.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_front.jpg?raw=true)
 ![fan_install_front.panel.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_front.panel.jpg?raw=true)
+![fan_install_fans_ready.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_fans_ready.jpg?raw=true)
 ![fans_install.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fans_install.jpg?raw=true)
 ![while_putting_side_back_on_push.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/while_putting_side_back_on_push.jpg?raw=true)
 ![sticky_stuff_hard_to_reach.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/sticky_stuff_hard_to_reach.jpg?raw=true)
