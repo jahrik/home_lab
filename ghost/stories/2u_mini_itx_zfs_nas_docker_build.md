@@ -47,7 +47,7 @@ Installing the fans.
 ![fan_install_front.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_front.jpg?raw=true)
 ![fan_install_front.panel.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_front.panel.jpg?raw=true)
 ![fan_install_fans_ready.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install_fans_ready.jpg?raw=true)
-![fans_install.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fans_install.jpg?raw=true)
+![fan_install.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/fan_install.jpg?raw=true)
 
 While putting the front panel back on the screw holes on the left (facing) side did not want to line up again.  I had to push firmly from the top here with a screw driver propped up under-neath to push the push that portion of the chassis into place.
 ![while_putting_side_back_on_push.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/while_putting_side_back_on_push.jpg?raw=true)
