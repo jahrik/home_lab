@@ -95,9 +95,6 @@ Installing the M.2 SSD.  This thing is so fast!!!
 ![m_2_install.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/m_2_install.jpg?raw=true)
 ![m_2_install_fits.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/m_2_install_fits.jpg?raw=true)
 
-Powering it on for the first time.
-[![power_it_on.mov](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/power_it_on.mov?raw=true)](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/power_it_on.mov?raw=true)
-
 PLEX runs on docker like a champ and is storing Libraries on the ZFS share.  Doing some Transcoding to stress test the system.
 ![stress_testing.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/stress_testing.jpg?raw=true)
 ![stress_testing_sensors.jpg](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/stress_testing_sensors.jpg?raw=true)
