@@ -20,7 +20,78 @@ I will also need to replace the molded splitter, when it comes time to use that 
 
 ## ZFS
 
-With a functional OS and drives online, it came time to configure ZFS.  This turned out to be way easy than I had imagined.
+With a functional OS and drives online, it came time to configure ZFS.  This turned out to be way easier than I had imagined.  While this motherboard does have support for onboard RAID configuration, I'm opting to test out ZFS, but it's nice to know I have a fall back option if I hate it.
 
+Install ZFS on Ubuntu 16.04
+```
+apt install zfs
+```
+
+The original zpool was created while I still had the OS on a USB stick. This pool consisted of the 6 SATA disks:
+```
+/dev/sda
+/dev/sdb
+/dev/sdc
+/dev/sdd
+/dev/sde
+/dev/sdf
+```
+
+Creating the pool with the following command
+```
+zpool create -f shredder_pool raidz sda sdb sdc sdd sde sdf
+```
+
+This was all it took.  I started loading it up with my collection of Movies and TV shows to host on PLEX.
+```
+mkdir -p /shredder_pool/movies
+mkdir -p /shredder_pool/tv
+rsync -av <old_freenas_box>:/allTheThings /shredder_pool/
+```
+
+When the M.2 drive came and I reinstalled the OS to it, I had to import the zpool with the following.
+```
+zpool import shredder_pool
+```
+
+This worked fine, but because I'm using the M.2 slot, I lost SATA_0 and the pool was in a degraded state because it was now missing `/dev/sda`.  There's probably a way to remove a disk from a zpool, but ended up destroying it and starting over before I had a chance to find out.  During my unneeded un-rack and check of STAT_0 being plugged in, I swapped a couple of the STAT cables because it was knocking off one of the drives in the 3 disk cage and I would prefer that it not use the last drive in the chassis itself.  In doing so, I inadvertently knocked 2 of the 6 disks in the zpool offline and the zpool went from degraded to totally destroyed.  Luckily, I wasn't too attached to the data on the pool and I had the option to just start over.
+
+The new pool consisting of 5 disks was created with the following.  Omitting `/dev/sda`, which is now the OS disk.
+```
+zpool create -f shredder_pool raidz sdb sdc sdd sde sdf
+```
+
+Show status
+```
+zpool status
+  pool: shredder_pool
+ state: ONLINE
+  scan: none requested
+config:
+
+	NAME        STATE     READ WRITE CKSUM
+	shredder_pool  ONLINE       0     0     0
+	  raidz1-0  ONLINE       0     0     0
+	    sdb     ONLINE       0     0     0
+	    sdc     ONLINE       0     0     0
+	    sdd     ONLINE       0     0     0
+	    sde     ONLINE       0     0     0
+	    sdf     ONLINE       0     0     0
+
+errors: No known data errors
+```
+
+Show iostat
+```
+zpool iostat
+                  capacity     operations    bandwidth
+pool           alloc   free   read  write   read  write
+-------------  -----  -----  -----  -----  -----  -----
+shredder_pool   867G  12.8T      6    143   799K  2.12M
+```
+
+Grafana Dashboard
+
+![homelab_grafana_zfs](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/homelab_grafana_zfs.png?raw=true)
 
 ## Docker
