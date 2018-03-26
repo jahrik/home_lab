@@ -1,6 +1,6 @@
 # The 2U Mini-ITX ZFS NAS Docker build - Part 2 of 2
 
-In [part 1 of this story](https://homelab.business/the-2u-mini-itx-zfs-nas-docker-build/), I give a price listing of all the hardware that went into the new 2U Docker host and pictures of how it all went together.  With it up and running, I'd like to document the installation process here.
+In [part 1 of this story](https://homelab.business/the-2u-mini-itx-zfs-nas-docker-build/), I give a price listing of all the hardware that went into the new 2U NAS/Docker host and pictures of how it all went together.  With it up and running, I'd like to document the installation process here.
 
 ## OS
 
@@ -23,75 +23,212 @@ I will also need to replace the molded splitter, when it comes time to use that 
 With a functional OS and drives online, it came time to configure ZFS.  This turned out to be way easier than I had imagined.  While this motherboard does have support for onboard RAID configuration, I'm opting to test out ZFS, but it's nice to know I have a fall back option if I hate it.
 
 Install ZFS on Ubuntu 16.04
-```
-apt install zfs
-```
+
+    apt install zfs
 
 The original zpool was created while I still had the OS on a USB stick. This pool consisted of the 6 SATA disks:
-```
-/dev/sda
-/dev/sdb
-/dev/sdc
-/dev/sdd
-/dev/sde
-/dev/sdf
-```
+
+    /dev/sda
+    /dev/sdb
+    /dev/sdc
+    /dev/sdd
+    /dev/sde
+    /dev/sdf
 
 Creating the pool with the following command
-```
-zpool create -f shredder_pool raidz sda sdb sdc sdd sde sdf
-```
+
+    zpool create -f shredder_pool raidz sda sdb sdc sdd sde sdf
 
 This was all it took.  I started loading it up with my collection of Movies and TV shows to host on PLEX.
-```
-mkdir -p /shredder_pool/movies
-mkdir -p /shredder_pool/tv
-rsync -av <old_freenas_box>:/allTheThings /shredder_pool/
-```
+
+    mkdir -p /shredder_pool/movies
+    mkdir -p /shredder_pool/tv
+    rsync -av <old_freenas_box>:/allTheThings /shredder_pool/
 
 When the M.2 drive came and I reinstalled the OS to it, I had to import the zpool with the following.
-```
-zpool import shredder_pool
-```
 
-This worked fine, but because I'm using the M.2 slot, I lost SATA_0 and the pool was in a degraded state because it was now missing `/dev/sda`.  There's probably a way to remove a disk from a zpool, but ended up destroying it and starting over before I had a chance to find out.  During my unneeded un-rack and check of STAT_0 being plugged in, I swapped a couple of the STAT cables because it was knocking off one of the drives in the 3 disk cage and I would prefer that it not use the last drive in the chassis itself.  In doing so, I inadvertently knocked 2 of the 6 disks in the zpool offline and the zpool went from degraded to totally destroyed.  Luckily, I wasn't too attached to the data on the pool and I had the option to just start over.
+    zpool import shredder_pool
+
+This worked fine, but because I'm using the M.2 slot, I lost SATA_0 and the pool was in a degraded state because it was now missing `/dev/sda`.  There's probably a way to remove a disk from a zpool, but I ended up destroying it and starting over before I had a chance to find out.  During my unneeded un-rack and check if SATA_0 is plugged in or not, I swapped a couple of the STAT cables because it was knocking off one of the drives in the 3 disk cage and I would prefer that it be the last drive in the chassis itself.  In doing so, I inadvertently knocked 2 of the 6 disks in the zpool offline and the zpool went from degraded to totally destroyed.  Luckily, I wasn't too attached to the data on the pool and I had the option to just start over, but this mistake would suck for someone without a backup.
 
 The new pool consisting of 5 disks was created with the following.  Omitting `/dev/sda`, which is now the OS disk.
-```
-zpool create -f shredder_pool raidz sdb sdc sdd sde sdf
-```
+
+    zpool create -f shredder_pool raidz sdb sdc sdd sde sdf
 
 Show status
-```
-zpool status
-  pool: shredder_pool
- state: ONLINE
-  scan: none requested
-config:
 
-	NAME        STATE     READ WRITE CKSUM
-	shredder_pool  ONLINE       0     0     0
-	  raidz1-0  ONLINE       0     0     0
-	    sdb     ONLINE       0     0     0
-	    sdc     ONLINE       0     0     0
-	    sdd     ONLINE       0     0     0
-	    sde     ONLINE       0     0     0
-	    sdf     ONLINE       0     0     0
+    zpool status
+      pool: shredder_pool
+     state: ONLINE
+      scan: none requested
+    config:
 
-errors: No known data errors
-```
+      NAME        STATE     READ WRITE CKSUM
+      shredder_pool  ONLINE       0     0     0
+        raidz1-0  ONLINE       0     0     0
+          sdb     ONLINE       0     0     0
+          sdc     ONLINE       0     0     0
+          sdd     ONLINE       0     0     0
+          sde     ONLINE       0     0     0
+          sdf     ONLINE       0     0     0
+
+    errors: No known data errors
 
 Show iostat
-```
-zpool iostat
-                  capacity     operations    bandwidth
-pool           alloc   free   read  write   read  write
--------------  -----  -----  -----  -----  -----  -----
-shredder_pool   867G  12.8T      6    143   799K  2.12M
-```
+
+    zpool iostat
+                      capacity     operations    bandwidth
+    pool           alloc   free   read  write   read  write
+    -------------  -----  -----  -----  -----  -----  -----
+    shredder_pool   867G  12.8T      6    143   799K  2.12M
 
 Grafana Dashboard
 
 ![homelab_grafana_zfs](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/homelab_grafana_zfs.png?raw=true)
 
+## NFS
+
+I handled NFS configuration with an ansible script, but it's not very painful to begin with.
+
+Ensure directory exists
+
+    mkdir -p /shredder_pool
+
+Install nfs-server on ubuntu 16.04
+
+    apt install nfs-kernel-server
+
+Create a file at /etc/exports with the following
+
+    /shredder_pool 192.168.0.0/16(rw,sync,no_root_squash,no_subtree_check)
+
+Start and enable the nfs service
+
+    systemctl start nfs-server.service
+    systemctl enable nfs-server.service
+
+**NOTE:** because I'm hosting my NFS share on ZFS, I had to run this command to get it to work.
+
+    zfs set sharenfs="rw=@192.168.0.0/16" shredder_pool
+
+This is the playbook.yml file I used to setup an nfs server with ansible.
+
+**nfs_playbook.yml**
+```
+---
+- hosts: nfs-server
+  become: true
+  become_method: sudo
+  vars:
+    nfs_exports:
+      - /shredder_pool
+    nfs_imports:
+      - /shredder_pool
+
+  tasks:
+    - name: install nfs software
+      package:
+        name: nfs-kernel-server
+        state: present
+      tags:
+        - nfs
+
+    - name: Ensure directories to export exist
+      file:
+        path: "{{ item.strip().split()[0] }}"
+        state: directory
+      with_items: "{{ nfs_exports }}"
+      notify: restart nfs
+      tags:
+        - nfs
+
+    - name: Generate /etc/exports file
+      template:
+        src: exports.j2
+        dest: /etc/exports
+        owner: root
+        group: root
+        mode: 0644
+      register: nfs_exports_copy
+      notify: restart nfs
+      tags:
+        - nfs
+
+    - name: Ensure nfs is running
+      service:
+        name: nfs-server
+        state: started
+        enabled: yes
+      when: nfs_exports|length
+      tags:
+        - nfs
+
+  handlers:
+
+    - name: restart nfs
+      service:
+        name: nfs-server
+        state: restarted
+      when: nfs_exports|length
+      tags:
+        - nfs
+```
+
+And the exports.j2 template used
+
+**templates/exports.j2**
+```
+{% for export in nfs_exports %}
+{{ export }} 192.168.0.0/16(rw,sync,no_root_squash,no_subtree_check)
+{% endfor %}
+```
+
 ## Docker
+
+* [Install Docs](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+* [Swarm Docs](https://docs.docker.com/engine/reference/commandline/swarm_init/)
+
+I also handled the installation and configuration of docker with ansible.  I used a more complicated playbook than the one above, which would be a post in itself, but I'll go over the basic manual commands for setting up a docker swarm cluster of one.
+
+Installation basically boils down to the following commands.
+
+    sudo apt-get update
+    sudo apt-get install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+    sudo add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) \
+      stable"
+    sudo apt-get update
+    sudo apt-get install docker-ce
+
+Find the network interface docker swarm will use.  In my case, I'm using `enp0s31f6`
+
+    ip link show
+
+    1: lo
+    2: enp2s0
+    3: enp0s31f6
+
+Initialize the swarm
+
+    docker swarm init --advertise-addr enp0s31f6:2377
+
+Check out the [Swarm Docs](https://docs.docker.com/engine/reference/commandline/swarm_init/) if you need more.
+
+With the swarm initialized, it's ready to start services.  At the time of this writing, I'm up to 17 docker containers running on this box, and it still seams like it has a lot of room for growth.
+
+    docker stack ls
+    NAME                SERVICES
+    awx                 5
+    elk                 8
+    jenkins             1
+    mongo               2
+    plex                1
+
+![docker_swarm_monitor_v2](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/docker_swarm_monitor_v2.png?raw=true)
