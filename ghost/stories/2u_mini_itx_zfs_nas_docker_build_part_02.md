@@ -221,7 +221,7 @@ Initialize the swarm
 
 Check out the [Swarm Docs](https://docs.docker.com/engine/reference/commandline/swarm_init/) if you need more.
 
-With the swarm initialized, it's ready to start services.  At the time of this writing, I'm up to 17 docker containers running on this box, and it still seams like it has a lot of room for growth.
+With the swarm initialized, it's ready to start services.  At the time of this writing, I'm up to 17 docker containers running on this box, and it still has a lot of room for growth.
 
     docker stack ls
     NAME                SERVICES
@@ -232,3 +232,32 @@ With the swarm initialized, it's ready to start services.  At the time of this w
     plex                1
 
 ![docker_swarm_monitor_v2](https://github.com/jahrik/home_lab/blob/master/ghost/images/2u_shredder/docker_swarm_monitor_v2.png?raw=true)
+
+I have been having a blast with this build and have already surpassed the needs that sparked the project.
+
+Brief description of what's running on it now:
+* PLEX server on docker for watching movies and tv shows.
+  * Storage on the ZFS store.
+  * Plans for openvpn-client connected Transmission container
+  * Plans for Sonarr & Radarr containers
+  * The 6 core i5 is paying off, when it comes to video transcoding.
+* ELK stack running with logspout
+  * Logspout sends all docker container logs to logstash
+  * Mounted volumes for persistent storage
+* Prometheus server
+  * Collecting metrics from
+    * Node Exporter
+    * Cadvisor
+    * Jenkins exporter
+    * Prometheus
+  * Serving exported metrics to Grafana
+* Grafana
+  * pulls metrics from
+    * Prometheus
+    * ELK
+* Jenkins master
+  * Plans to build a few slaves as additional docker services for
+    * testing and continuous deployment of docker stacks
+    * Ansible Plugin, maybe kick off AWX through the API too..??
+* Ansible AWX (open source tower) stack
+  * Running much better on swarm than it did with docker-compose
