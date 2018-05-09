@@ -1,0 +1,12 @@
+---
+- name: Configure Laptops
+  import_playbook: laptops.yml
+
+- name: Configure Shredder
+  import_playbook: shredder.yml
+
+- name: Configure NFS server and clients
+  import_playbook: nfs.yml
+
+# - name: Configure Docker Swarm Cluster
+  # import_playbook: swarm.yml
