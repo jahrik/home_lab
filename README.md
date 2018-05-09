@@ -1,3 +1,3 @@
-#  Home Lab setup with NFS and Docker Swarm
+#  Home lab deployment pipeline with Jenkins, Ansible AWX, Docker Swarm, and other fun tools!
 
-## https://homelab.business/
+The Ghost blog hosted on this homelab can be found at - https://homelab.business/
