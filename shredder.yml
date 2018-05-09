@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: shredder
   become: true
   become_method: sudo
   vars:
@@ -64,7 +64,6 @@
       synchronize:
         src: /var/lib/docker/
         dest: "{{ docker_dir }}"
-        delete: yes
         recursive: yes
       delegate_to: "{{ inventory_hostname }}"
       when:
