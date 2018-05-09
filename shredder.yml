@@ -24,7 +24,7 @@
         - wget
         - rsync
         - make
-        - zfs
+        - zfsutils-linux
         - htop
         - iotop
         - screen
