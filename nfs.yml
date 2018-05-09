@@ -1,69 +1,71 @@
 ---
-# - hosts: nfs-server
-#   become: true
-#   become_method: sudo
-#   vars:
-#     nfs_exports:
-#       - /mnt/volume00
-#     nfs_imports:
-#       - /mnt/volume00
-# 
-#   tasks:
-#     - name: install nfs software
-#       package:
-#         name: nfs-kernel-server
-#         state: present
-#       tags:
-#         - nfs
-# 
-#     - name: Ensure directories to export exist
-#       file:
-#         path: "{{ item.strip().split()[0] }}"
-#         state: directory
-#       with_items: "{{ nfs_exports }}"
-#       notify: restart nfs
-#       tags:
-#         - nfs
-# 
-#     - name: Generate /etc/exports file
-#       template:
-#         src: exports.j2
-#         dest: /etc/exports
-#         owner: root
-#         group: root
-#         mode: 0644
-#       register: nfs_exports_copy
-#       notify: restart nfs
-#       tags:
-#         - nfs
-# 
-#     - name: Ensure nfs is running
-#       service:
-#         name: nfs-server
-#         state: started
-#         enabled: yes
-#       when: nfs_exports|length
-#       tags:
-#         - nfs
-# 
-#   handlers:
-#     - name: restart nfs
-#       service:
-#         name: nfs-server
-#         state: restarted
-#       when: nfs_exports|length
-#       tags:
-#         - nfs
+- hosts: nfs-server
+  become: true
+  become_method: sudo
+  vars:
+    nfs_exports:
+      - /shredder_pool
+    nfs_imports:
+      - /shredder_pool
+
+  tasks:
+    - name: install nfs software
+      package:
+        name: nfs-kernel-server
+        state: present
+      tags:
+        - nfs
+
+    - name: Ensure directories to export exist
+      file:
+        path: "{{ item.strip().split()[0] }}"
+        state: directory
+      with_items: "{{ nfs_exports }}"
+      notify: restart nfs
+      tags:
+        - nfs
+
+    - name: Generate /etc/exports file
+      template:
+        src: exports.j2
+        dest: /etc/exports
+        owner: root
+        group: root
+        mode: 0644
+      register: nfs_exports_copy
+      notify: restart nfs
+      tags:
+        - nfs
+
+    - name: Ensure nfs is running
+      service:
+        name: nfs-server
+        state: started
+        enabled: yes
+      when: nfs_exports|length
+      tags:
+        - nfs
+
+  handlers:
+
+    - name: restart nfs
+      service:
+        name: nfs-server
+        state: restarted
+      when: nfs_exports|length
+      tags:
+        - nfs
+
 
 - hosts: nfs-client
   become: true
   become_method: sudo
   vars:
-    nfs_server: 192.168.2.108
+    nfs_server: shredder
     nfs_exports:
-      - /mnt/volume00
+      - /shredder_pool
     nfs_imports:
-      - /mnt/volume00
+      - /shredder_pool
 
   tasks:
 
@@ -79,6 +81,14 @@
       package:
         name: nfs-common
         state: present
+      tags:
+        - nfs
+
+    - name: install nfs software
+      package:
+        name: nfs
+        state: present
+      # when: Archlinux
       tags:
         - nfs
 
