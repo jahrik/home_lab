@@ -1,9 +1,7 @@
 ---
-- hosts: all
+- hosts: laptops
   become: true
   become_method: sudo
-  roles:
-    - jahrik.vim
 
   tasks:
 
@@ -17,6 +15,7 @@
         - wget
         - rsync
         - make
+        - net-tools
       tags:
         - setup
         - deps
@@ -40,31 +39,3 @@
       tags:
        - setup
        - lid
-
-    - name: update-ca-certificates
-      command: /usr/sbin/update-ca-certificates
-
-
-
-# MORE TASKS
-#   - name: Ensure local certs directory exists
-#     file:
-#       state: directory
-#       path: /usr/local/share/ca-certificates
-
-#   - name: Install squid_https cert
-#     copy:
-#       src: ./squid_https.crt
-#       dest: /usr/local/share/ca-certificates/squid_https.crt
-#     notify: update-ca-certificates
-
-#   - name: Generate /etc/hosts
-#     template:
-#       src: hosts.j2
-#       dest: /etc/hosts
-#       owner: root
-#       group: root
-#       mode: 0644
-#     tags:
-#       - setup
-#       - hosts
