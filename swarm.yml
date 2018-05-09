@@ -28,16 +28,7 @@
         filename: docker
         update_cache: yes
 
-#     - name: clean slate
-#       apt:
-#         name: "{{ item }}"
-#           state: absent
-#       with_items:
-#         - docker
-#         - docker-engine
-#         - docker.io
-
-    - name: install docker-engine
+    - name: install docker-ce
       apt:
         name: docker-ce
         state: present
