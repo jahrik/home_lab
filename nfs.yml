@@ -84,14 +84,6 @@
       tags:
         - nfs
 
-    - name: install nfs software
-      package:
-        name: nfs
-        state: present
-      # when: Archlinux
-      tags:
-        - nfs
-
     - name: set mountpoints
       mount:
         name: "{{ item }}"
