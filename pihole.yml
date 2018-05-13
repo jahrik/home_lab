@@ -1,0 +1,60 @@
+---
+# git clone --depth 1 https://github.com/pi-hole/pi-hole.git pi-hole
+# cd "pi-hole/automated\ install/"
+# sudo bash basic-install.sh
+
+- hosts: bebop
+  become: true
+  become_method: sudo
+  vars:
+    stuff: thing
+
+  tasks:
+
+    # Dependencies
+    - name: apt-get update && install deps
+      apt:
+        update_cache: yes
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - vim
+        - wget
+        - rsync
+        - make
+        - htop
+        - iotop
+        - screen
+        - lm-sensors
+      tags:
+        - setup
+        - deps
+
+    - name: clone pihole from github
+      become: true
+      git:
+        repo: https://github.com/pi-hole/pi-hole.git
+        dest: /opt/pi-hole
+
+    ##########################
+    # This didn't work at all.
+    # Had to install manually
+    # - name: install pihole
+    #   become: true
+    #   shell: >
+    #     cd /opt/pi-hole/automated\ install/
+    #     bash basic-install.sh
+
+    # Check if pihole is blocking sites
+    - name: check if ad blocking is enabled
+      uri:
+        url: "https://blockads.fivefilters.org/?pihole"
+        return_content: yes
+      register: result
+      # until: result.status == 'Ad blocking enabled!'
+      # retries: 30
+      # delay: 1
+
+    - name: Fail if 'Ad blocking enabled!' is not in the page content
+      fail:
+      when: "'Ad blocking enabled' not in result.content"

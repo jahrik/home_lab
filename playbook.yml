@@ -8,5 +8,8 @@
 - name: Configure NFS server and clients
   import_playbook: nfs.yml
 
+- name: Configure pihole server
+  import_playbook: pihole.yml
+
 # - name: Configure Docker Swarm Cluster
   # import_playbook: swarm.yml
