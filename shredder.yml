@@ -71,6 +71,9 @@
         - graph != /var/lib/docker
       notify: restart docker
 
+    - name: increase vm.max_map_count for elasticsearch 6+
+      command: sysctl -w vm.max_map_count=262144
+
   handlers:
 
     - name: restart docker
