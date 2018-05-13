@@ -3,7 +3,7 @@
 # cd "pi-hole/automated\ install/"
 # sudo bash basic-install.sh
 
-- hosts: bebop
+- hosts: pihole
   become: true
   become_method: sudo
   vars:
