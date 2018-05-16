@@ -58,3 +58,15 @@
     - name: Fail if 'Ad blocking enabled!' is not in the page content
       fail:
       when: "'Ad blocking enabled' not in result.content"
+
+#     - name: install pihole_exporter
+#       get_url:
+#         url: https://bintray.com/artifact/download/nlamirault/oss/pihole_exporter-0.1.0_linux_arm
+#         dest: /usr/local/bin/pihole_exporter
+#         mode: 775
+
+#     - name: clone pihole exporter from github
+#       become: true
+#       git:
+#         repo: https://github.com/nlamirault/pihole_exporter
+#         dest: /opt/pihole_exporter
